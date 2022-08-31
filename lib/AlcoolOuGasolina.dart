@@ -10,10 +10,44 @@ class QualCombustivel extends StatefulWidget {
 
 class _QualCombustivelState extends State<QualCombustivel> {
   var _titulo = "Álcool ou Gasolina";
-  var _resultado = "Resultado";
+  var _resultado = "";
   var _imagemLogo = "imagens/logo.png";
   TextEditingController _controllerAlcool = TextEditingController();
   TextEditingController _controllerGasolina = TextEditingController();
+  void _calcular(){
+    double? precoALcool = double.tryParse(_controllerAlcool.text);
+    double? precoGasolina = double.tryParse(_controllerGasolina.text);
+
+    if(precoALcool == null && precoGasolina == null){
+      setState(() {
+        _resultado = "Digite o Preço correto do Alcool e da Gasolina";
+      });
+    }else if(precoALcool == null){
+      setState(() {
+        _resultado = "Digite o Preço correto do Alcool";
+      });
+    }else if(precoGasolina == null){
+      setState(() {
+        _resultado = "Digite o Preço correto da Gasolina";
+      });
+    }else{
+      if(precoALcool<(precoGasolina*0.7)){
+        setState(() {
+          _resultado = "Melhor Abastecer com Alcool";
+        });
+      }else{
+        setState(() {
+          _resultado = "Melhor Abastecer com Gasolina";
+        });
+      }
+    }
+    //Limpar Campos
+    //_limparCampos();
+  }
+  void _limparCampos(){
+    _controllerAlcool.text = "";
+    _controllerGasolina.text = "";
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,7 +107,7 @@ class _QualCombustivelState extends State<QualCombustivel> {
                           fontSize: 20
                       ),
                     ),
-                    onPressed: (){}
+                    onPressed: _calcular
                 ),
               ),
               Padding(
