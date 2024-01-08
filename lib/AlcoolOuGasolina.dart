@@ -53,7 +53,8 @@ class _QualCombustivelState extends State<QualCombustivel> {
     return Scaffold(
       appBar: AppBar(
         title: Text(_titulo),
-        backgroundColor: Colors.indigo,
+        backgroundColor: Colors.indigo.shade900,
+        foregroundColor: Colors.white,
       ),
       body: Container(
         padding: EdgeInsets.all(32),
@@ -70,15 +71,16 @@ class _QualCombustivelState extends State<QualCombustivel> {
                 child: Text(
                   "Saiba qual a melhor opção para abastecimento do seu carro:",
                   style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold
+                    color: Colors.indigo.shade900,
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold
                   ),
                 ),
               ),
               TextField(
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
-                    labelText: "Preço Álcool, Ex: 3.99"
+                  labelText: "Preço Álcool, Ex: 3.99"
                 ),
                 style: TextStyle(
                     fontSize: 22
@@ -97,6 +99,23 @@ class _QualCombustivelState extends State<QualCombustivel> {
               ),
               Padding(
                 padding: EdgeInsets.only(top: 10),
+                child:
+                ElevatedButton(
+                  style: const ButtonStyle(
+                    backgroundColor: MaterialStatePropertyAll<Color>(Colors.indigo),
+                  ),
+                  child: const Text(
+                    "Calcular",
+                    style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white
+                    ),
+                  ),
+                  //color: Colors.orange,
+                  //padding: EdgeInsets.fromLTRB(30, 15, 30, 15),
+                  onPressed: _calcular
+                ),
+                /*
                 child: RaisedButton(
                     color: Colors.blue,
                     textColor: Colors.white,
@@ -109,6 +128,7 @@ class _QualCombustivelState extends State<QualCombustivel> {
                     ),
                     onPressed: _calcular
                 ),
+                */
               ),
               Padding(
                 padding: EdgeInsets.only(top: 20),
